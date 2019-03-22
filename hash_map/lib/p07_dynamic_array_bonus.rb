@@ -58,7 +58,7 @@ class DynamicArray
       return self[self.count + i]
     end
 
-    self.store[(self.start_idx + i) % capacity]
+    self.store[(self.start_idx + i) % capacity] # these methods need to fucking return the value you set it to because this is how equality is checked in == it checks each element in the array referenced with a self[i] so you need to return that value in these methods so great
   end
 
   # def []=(i, val)
@@ -88,7 +88,7 @@ class DynamicArray
       self.count += 1
     end
 
-    self.store[(self.start_idx + i) % capacity] = val
+    self.store[(self.start_idx + i) % capacity] = val # these methods need to fucking return the value you set it to because this is how equality is checked in == it checks each element in the array referenced with a self[i] so you need to return that value in these methods so great
   end
 
   def to_s
