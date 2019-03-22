@@ -133,7 +133,7 @@ class DynamicArray
     return nil if count == 0
     val = @store[0]
     (0...@count).each do |i|
-      @store[i] = @store[i+1] if self.count > i+1
+      @store[i] = @store[i+1] if self.count > i+1 # don't reference @store[i+1] if it's out of bounds which it would be if we're shifting on the last index
     end
     @count -= 1
     val
