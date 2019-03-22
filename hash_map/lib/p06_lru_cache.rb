@@ -2,6 +2,12 @@ require_relative 'p05_hash_map'
 require_relative 'p04_linked_list'
 require "byebug"
 
+# need doubly linked list because when ejecting from a singly linked list
+# you have no idea what linked to that element so you would need to go
+# all the way through the linked list until you found the previous element
+# that linked to the element you were trying to delete and then reset that
+# link's next pointer to the next element skipping the element being ejected
+
 class LRUCache
   def initialize(max, prc)
     @map = HashMap.new
