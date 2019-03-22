@@ -21,6 +21,7 @@ class HashMap
     else
       linked_list.append(key, val)
       @count += 1
+      resize! if @count +1 == @store.length
     end
   end
 
@@ -42,7 +43,7 @@ class HashMap
     end
   end
 
-  # uncomment when you have Enumerable included
+  # uncomment when you have Enumerable included # super fucking lucky to not get stuck and just keep moving forward at a good pace # really understanding the material really helps hilarious that you never even watched the lectures you just read them while working out and it was totally sufficient for this stuff but not SQL or Rails tragically
   def to_s
     pairs = inject([]) do |strs, (k, v)|
       strs << "#{k.to_s} => #{v.to_s}"
@@ -60,6 +61,13 @@ class HashMap
   end
 
   def resize!
+    original_store = @store.dup
+    @store = Array.new(2*@store.length) { LinkedList.new }
+    original_store.each do |bucket|
+      bucket.each do |node|
+        bucket(node.key).append(node.key, node.val)
+      end
+    end
   end
 
   def bucket(key)
